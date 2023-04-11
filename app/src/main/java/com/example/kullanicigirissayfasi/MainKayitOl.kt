@@ -21,17 +21,20 @@ class MainKayitOl : AppCompatActivity() {
             var kullaniciBilgisi = binding.kayitKullaniciAdi.text.toString()
             var kullaniciParola = binding.kayitParola.text.toString()
 
-            var SharedPreferences=this.getSharedPreferences("bilgiler", MODE_PRIVATE)
-            var editor = SharedPreferences.edit()
+            if(kullaniciBilgisi.length >= 6 && kullaniciParola.length >= 6) {
+                var SharedPreferences = this.getSharedPreferences("bilgiler", MODE_PRIVATE)
+                var editor = SharedPreferences.edit()
 
-            //veri ekleme
-            editor.putString("kullanici","$kullaniciBilgisi").apply()
-            editor.putString("parola","$kullaniciParola").apply()
-            Toast.makeText(this,"Kayıt Başarılı",Toast.LENGTH_LONG).show()
-            binding.kayitKullaniciAdi.text.clear()
-            binding.kayitParola.text.clear()
-
-
+                //veri ekleme
+                editor.putString("kullanici", "$kullaniciBilgisi").apply()
+                editor.putString("parola", "$kullaniciParola").apply()
+                Toast.makeText(this, "Kayıt Başarılı", Toast.LENGTH_LONG).show()
+                binding.kayitKullaniciAdi.text.clear()
+                binding.kayitParola.text.clear()
+            }
+            else {
+                Toast.makeText(this, "Kullanıcı adı ve şifre minimum 6 karakter olmalıdır!", Toast.LENGTH_LONG).show()
+            }
         }
 
 
